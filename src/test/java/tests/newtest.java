@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.Homepage;
 import pages.LoginSignupPage;
+import pages.RegisterationPage;
 import pages.RegisterationSuccessPage;
 
 public class newtest {
@@ -18,6 +19,7 @@ public class newtest {
     LoginSignupPage login;
     RegisterationSuccessPage successPage;
     Homepage homepage;
+    RegisterationPage registerationPage;
 
     @BeforeClass
     public void setUp (){
@@ -25,6 +27,7 @@ public class newtest {
         login = new LoginSignupPage(driver);
         successPage = new RegisterationSuccessPage(driver);
         homepage = new Homepage(driver);
+        registerationPage = new RegisterationPage(driver);
         driver.navigate().to("https://automationexercise.com/login");
         driver.manage().window().maximize();
     }
@@ -34,38 +37,10 @@ public class newtest {
 
         homepage.clickOnLoginLink();
         login.checkThatUserNavigatedToSignUpPage();
-        login.fillSignUpForm("am0h@jfg.vv", "Mohamed Nagy");
-        driver.findElement(By.cssSelector("input[id=\"id_gender1\"]")).click();
-        driver.findElement(By.xpath("//input[@data-qa=\"password\"]")).sendKeys("19919690mN@");
-
-        Select day = new Select(driver.findElement(By.id("days")));
-        Select month = new Select(driver.findElement(By.id("months")));
-        Select year = new Select(driver.findElement(By.id("years")));
-
-        day.selectByValue("15");
-        month.selectByValue("6");
-        year.selectByValue("2001");
-
-        driver.findElement(By.id("newsletter")).click();
-        driver.findElement(By.id("optin")).click();
-
-        driver.findElement(By.xpath("//input[@data-qa=\"first_name\"]")).sendKeys("Mohamed");
-        driver.findElement(By.xpath("//input[@data-qa=\"last_name\"]")).sendKeys("Mohamed");
-        driver.findElement(By.xpath("//input[@data-qa=\"company\"]")).sendKeys("DEPI");
-
-        driver.findElement(By.cssSelector("input[data-qa=\"address\"]")).sendKeys("Alexandria, Smouha");
-        driver.findElement(By.cssSelector("input[data-qa=\"address2\"]")).sendKeys("Behira, Kom Hamada");
-
-        Select country = new Select(driver.findElement(By.id("country")));
-        country.selectByValue("Singapore");
-
-        driver.findElement(By.cssSelector("input[data-qa=\"state\"]")).sendKeys("Waly");
-        driver.findElement(By.cssSelector("input[data-qa=\"city\"]")).sendKeys("maly");
-        driver.findElement(By.cssSelector("input[data-qa=\"zipcode\"]")).sendKeys("22364");
-
-        driver.findElement(By.xpath("//input[@data-qa=\"mobile_number\"]")).sendKeys("01553158667");
-        driver.findElement(By.xpath("//button[@data-qa=\"create-account\"]")).click();
-
+        login.fillSignUpForm("ajkn0h@jfg.vv", "Mohamed Nagy");
+        registerationPage.checkThatRegisterationPageLoaded();
+        registerationPage.fillInAccountInformation("male", "am0h@jfg.vv", "19919690mN@", "15", "6", "2001");
+        registerationPage.fillInAddressInformation("Mohamed", "Nagy", "DEPI", "Alexandria", "Smouha", "Singapore", "Waly", "Maly", "22346", "01553158667");
         successPage.checkThatAccountCreatedSuccessfully();
         driver.manage().deleteAllCookies();
     }
@@ -73,7 +48,7 @@ public class newtest {
     @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
     public void userCanLoginSuccessfully() {
         driver.navigate().to("https://automationexercise.com/login");
-        login.fillLoginForm("am0h@jfg.vv", "19919690mN@");
+        login.fillLoginForm("ajkn0h@jfg.vv", "19919690mN@");
         homepage.checkThatLogoutLinkShouldBeDisplayed();
     }
 

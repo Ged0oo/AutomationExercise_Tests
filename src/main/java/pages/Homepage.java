@@ -6,11 +6,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 public class Homepage {
+    /**
+     * Constructor
+     */
     public WebDriver driver;
     public Homepage(WebDriver driver) {
         this.driver = driver;
     }
 
+    /**
+     * Locators
+     */
     By logInLink = By.xpath("//a[@href='/login']");
     By logOutLink = By.xpath("//a[@href='/logout']");
     By registerLink = By.xpath("//a[@href='/register']");

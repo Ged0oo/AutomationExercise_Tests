@@ -41,4 +41,6 @@ public class LoginSignupPage {
         driver.findElement(signUpName).sendKeys(name);
         driver.findElement(signUpButton).click();
     }
+
+    public void fillSignUpPage(String email, String name) {}
 }
