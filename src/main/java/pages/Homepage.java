@@ -17,10 +17,11 @@ public class Homepage {
     /**
      * Locators
      */
-    By logInLink = By.xpath("//a[@href='/login']");
+    By signUpLogInLink = By.xpath("//a[@href='/login']");
     By logOutLink = By.xpath("//a[@href='/logout']");
     By registerLink = By.xpath("//a[@href='/register']");
     By deletAccountLink = By.xpath("//a[@href=\"/delete_account\"]\n");
+    By logedInAs = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a");
 
     /**
      * Assertions
@@ -29,15 +30,27 @@ public class Homepage {
         Assert.assertTrue(driver.findElement(logOutLink).isDisplayed());
     }
 
+    public void checkThatUserNavigatedToHomePage() {
+        Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/");
+    }
+
+    public void checkThatUserLoggedInSuccessfully() {
+        Assert.assertTrue(driver.findElement(logedInAs).isDisplayed());
+    }
+
     /**
      * Actions
      */
-    public void clickOnLoginLink(){
-        driver.findElement(logInLink).click();
+    public void clickOnSignUpLink(){
+        driver.findElement(signUpLogInLink).click();
     }
 
     public void clickOnLogoutLink(){
         driver.findElement(logOutLink).click();
+    }
+
+    public void clickOnDeleteAccountLink(){
+        driver.findElement(deletAccountLink).click();
     }
 
 }

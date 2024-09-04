@@ -18,7 +18,9 @@ public class RegisterationPage {
     /**
      * Locators
      */
-    By loc_idGender = By.cssSelector("input[id=\"id_gender1\"]");
+    By loc_EnterAccountInformationLabel = By.xpath("//*[@id=\"form\"]/div/div/div/div/h2/b");
+    By loc_idGenderMr = By.cssSelector("input[id=\"id_gender1\"]");
+    By loc_idGenderMrs = By.cssSelector("input[id=\"id_gender2\"]");
     By loc_password = By.xpath("//input[@data-qa=\"password\"]");
     By loc_day = By.id("days");
     By loc_month = By.id("months");
@@ -42,13 +44,19 @@ public class RegisterationPage {
      */
     public void checkThatRegisterationPageLoaded() {
         Assert.assertTrue(driver.getCurrentUrl().contains("signup"));
+        Assert.assertTrue(driver.findElement(loc_EnterAccountInformationLabel).isDisplayed());
     }
 
     /**
      * Actions
      */
     public void fillInAccountInformation(String gender, String email, String password, String day, String month, String year) {
-        driver.findElement(loc_idGender).click();
+
+        if(gender.equals("male"))
+            driver.findElement(loc_idGenderMr).click();
+        else if(gender.equals("female"))
+            driver.findElement(loc_idGenderMrs).click();
+
         driver.findElement(loc_password).sendKeys(password);
 
         Select sel_day = new Select(driver.findElement(loc_day));
@@ -69,7 +77,7 @@ public class RegisterationPage {
         driver.findElement(loc_lastName).sendKeys(lastName);
         driver.findElement(loc_company).sendKeys(company);
         driver.findElement(loc_firstAddress).sendKeys(address_1);
-        driver.findElement(loc_lastName).sendKeys(address_2);
+        driver.findElement(loc_lastAddress).sendKeys(address_2);
 
         Select sel_country = new Select(driver.findElement(loc_country));
         sel_country.selectByValue(country);
