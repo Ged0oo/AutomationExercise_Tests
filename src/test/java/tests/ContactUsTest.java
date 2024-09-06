@@ -15,36 +15,23 @@ import pages.*;
 public class ContactUsTest {
 
     WebDriver driver;
-    LoginSignupPage login;
-    RegisterationSuccessPage successPage;
     Homepage homepage;
-    RegisterationPage registerationPage;
-    AcountDeletionPage delete;
-    ContactUsPage contact;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
-        login = new LoginSignupPage(driver);
-        successPage = new RegisterationSuccessPage(driver);
         homepage = new Homepage(driver);
-        registerationPage = new RegisterationPage(driver);
-        delete = new AcountDeletionPage(driver);
-        contact = new ContactUsPage(driver);
         driver.navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
     public void userCanContactSuccessfully() {
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.clickOnContactUsLink();
-        contact.checkThatContactUsPageLoadedSuccessfully();
-        contact.fillContactUsForm("Mohamed Nagy", "dfdsf@df.cc", "Objection", "HelloWorld How Are Things >>!");
-        driver.switchTo().alert().accept();
-        contact.userContactedUsSuccessfully();
-        contact.clickHome();
-        homepage.checkThatUserNavigatedToHomePage();
+        homepage.checkThatUserNavigatedToHomePage()
+                .clickOnContactUsLink()
+                .checkThatContactUsPageLoadedSuccessfully()
+                .fillContactUsForm("Mohamed Nagy", "dfdsf@df.cc", "Objection", "HelloWorld How Are Things >>!")
+                .userContactedUsSuccessfully().clickHome().checkThatUserNavigatedToHomePage();
     }
 
     @AfterClass

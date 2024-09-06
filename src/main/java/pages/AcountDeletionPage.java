@@ -23,16 +23,18 @@ public class AcountDeletionPage {
     /**
      * Assertions
      */
-    public void checkThatAccountDeletedSuccessfully() {
+    public AcountDeletionPage checkThatAccountDeletedSuccessfully() {
         Assert.assertTrue(driver.getCurrentUrl().contains("/delete_account"));
         Assert.assertTrue(driver.findElement(accoutDeletedLabel).isDisplayed());
+        return this;
     }
 
 
     /**
      * Actions
      */
-    public void clickContinueButton() {
+    public Homepage clickContinueButton() {
         driver.findElement(continueButton).click();
+        return new Homepage(driver);
     }
 }

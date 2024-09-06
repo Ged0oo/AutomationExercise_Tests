@@ -17,39 +17,33 @@ public class UserLogOut {
     private static final Logger log = LoggerFactory.getLogger(LogInWithCorrectCredintials.class);
     WebDriver driver;
     LoginSignupPage login;
-    RegisterationSuccessPage successPage;
     Homepage homepage;
-    RegisterationPage registerationPage;
-    AcountDeletionPage delete;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         login = new LoginSignupPage(driver);
-        successPage = new RegisterationSuccessPage(driver);
         homepage = new Homepage(driver);
-        registerationPage = new RegisterationPage(driver);
-        delete = new AcountDeletionPage(driver);
         driver.navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
     public void userCanLoginSuccessfully() {
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.clickOnSignUpLink();
-        login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillLoginForm("632273@jfg.vv", "19919690mN@");
-        homepage.checkThatUserLoggedInSuccessfully();
+        homepage.checkThatUserNavigatedToHomePage()
+                .clickOnSignUpLink()
+                .checkThatUserNavigatedToLogInSignUpPage()
+                .fillLoginForm("632273@jfg.vv", "19919690mN@")
+                .checkThatUserLoggedInSuccessfully();
     }
 
     @Test(priority = 2, dependsOnMethods = "userCanLoginSuccessfully")
     public void userCanLogOutAccountSuccessfully() {
         driver.navigate().to("https://automationexercise.com/");
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.checkThatUserLoggedInSuccessfully();
-        homepage.checkThatLogoutLinkShouldBeDisplayed();
-        homepage.clickOnLogoutLink();
+        homepage.checkThatUserNavigatedToHomePage()
+                .checkThatUserLoggedInSuccessfully()
+                .checkThatLogoutLinkShouldBeDisplayed()
+                .clickOnLogoutLink();
         login.checkThatUserNavigatedToLogInSignUpPage();
     }
 

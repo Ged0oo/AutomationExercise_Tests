@@ -24,9 +24,10 @@ public class RegisterationSuccessPage {
     /**
      * Assertions
      */
-    public void checkThatAccountCreatedSuccessfully() {
+    public RegisterationSuccessPage checkThatAccountCreatedSuccessfully() {
         Assert.assertTrue(driver.getCurrentUrl().contains("/account_created"));
         Assert.assertTrue(driver.findElement(successMessage).isDisplayed());
+        return this;
     }
 
     /**

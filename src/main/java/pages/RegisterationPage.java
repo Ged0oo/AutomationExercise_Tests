@@ -42,15 +42,16 @@ public class RegisterationPage {
     /**
      * Assertions
      */
-    public void checkThatRegisterationPageLoaded() {
+    public RegisterationPage checkThatRegisterationPageLoaded() {
         Assert.assertTrue(driver.getCurrentUrl().contains("signup"));
         Assert.assertTrue(driver.findElement(loc_EnterAccountInformationLabel).isDisplayed());
+        return this;
     }
 
     /**
      * Actions
      */
-    public void fillInAccountInformation(String gender, String email, String password, String day, String month, String year) {
+    public RegisterationPage fillInAccountInformation(String gender, String email, String password, String day, String month, String year) {
 
         if(gender.equals("male"))
             driver.findElement(loc_idGenderMr).click();
@@ -70,9 +71,11 @@ public class RegisterationPage {
 
         driver.findElement(loc_newsTeller).click();
         driver.findElement(loc_option).click();
+
+        return this;
     }
 
-    public void fillInAddressInformation(String firstName, String lastName, String company, String address_1, String address_2, String country, String state, String city, String zipCode, String mobile) {
+    public RegisterationSuccessPage fillInAddressInformation(String firstName, String lastName, String company, String address_1, String address_2, String country, String state, String city, String zipCode, String mobile) {
         driver.findElement(loc_firstName).sendKeys(firstName);
         driver.findElement(loc_lastName).sendKeys(lastName);
         driver.findElement(loc_company).sendKeys(company);
@@ -88,6 +91,8 @@ public class RegisterationPage {
         driver.findElement(loc_mobileNumber).sendKeys(mobile);
 
         driver.findElement(loc_createAccount).click();
+
+        return new RegisterationSuccessPage(driver);
     }
 
 }

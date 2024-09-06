@@ -25,43 +25,49 @@ public class Homepage {
     By contactUsLink = By.xpath("//a[@href=\"/contact_us\"]");
     By testCasesLink = By.xpath("//a[@href=\"/test_cases\"]");
 
-
     /**
      * Assertions
      */
-    public void checkThatLogoutLinkShouldBeDisplayed() {
+    public Homepage checkThatLogoutLinkShouldBeDisplayed() {
         Assert.assertTrue(driver.findElement(logOutLink).isDisplayed());
+        return this;
     }
 
-    public void checkThatUserNavigatedToHomePage() {
+    public Homepage checkThatUserNavigatedToHomePage() {
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/");
+        return this;
     }
 
-    public void checkThatUserLoggedInSuccessfully() {
+    public Homepage checkThatUserLoggedInSuccessfully() {
         Assert.assertTrue(driver.findElement(logedInAs).isDisplayed());
+        return this;
     }
 
     /**
      * Actions
      */
-    public void clickOnSignUpLink(){
+    public LoginSignupPage clickOnSignUpLink(){
         driver.findElement(signUpLogInLink).click();
+        return new LoginSignupPage(driver);
     }
 
     public void clickOnLogoutLink(){
         driver.findElement(logOutLink).click();
     }
 
-    public void clickOnDeleteAccountLink(){
+    public AcountDeletionPage clickOnDeleteAccountLink(){
         driver.findElement(deletAccountLink).click();
+        return new AcountDeletionPage(driver);
     }
 
-    public void clickOnContactUsLink(){
+    public ContactUsPage clickOnContactUsLink(){
         driver.findElement(contactUsLink).click();
+        return new ContactUsPage(driver);
     }
 
-    public void clickOnTestCasesLink(){
+    public TestCasesPage clickOnTestCasesLink(){
         driver.findElement(testCasesLink).click();
+        return new TestCasesPage(driver);
     }
 
 }

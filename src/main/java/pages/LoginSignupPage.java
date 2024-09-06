@@ -33,10 +33,11 @@ public class LoginSignupPage {
     /**
      * Assertions
      */
-    public void checkThatUserNavigatedToLogInSignUpPage() {
+    public LoginSignupPage checkThatUserNavigatedToLogInSignUpPage() {
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
         Assert.assertTrue(driver.findElement(newUserSignUpLabel).isDisplayed());
         Assert.assertTrue(driver.findElement(logInYourAccountLabel).isDisplayed());
+        return this;
     }
 
     public void checkThatUserCanNotLogInWithIncorrectCridentials() {
@@ -50,16 +51,18 @@ public class LoginSignupPage {
     /**
      * Actions
      */
-    public void fillLoginForm(String email, String password) {
+    public Homepage fillLoginForm(String email, String password) {
         driver.findElement(logInEmail).sendKeys(email);
         driver.findElement(logInPassword).sendKeys(password);
         driver.findElement(logInButton).click();
+        return new Homepage(driver);
     }
 
-    public void fillSignUpForm(String email, String name) {
+    public RegisterationPage fillSignUpForm(String email, String name) {
         driver.findElement(signUpMail).sendKeys(email);
         driver.findElement(signUpName).sendKeys(name);
         driver.findElement(signUpButton).click();
+        return new RegisterationPage(driver);
     }
 
     public void fillSignUpPage(String email, String name) {}

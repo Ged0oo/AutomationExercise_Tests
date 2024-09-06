@@ -15,34 +15,24 @@ import pages.*;
 public class TestCasesPageTest {
 
     WebDriver driver;
-    LoginSignupPage login;
-    RegisterationSuccessPage successPage;
     Homepage homepage;
-    RegisterationPage registerationPage;
-    AcountDeletionPage delete;
-    ContactUsPage contact;
     TestCasesPage testCases;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
-        login = new LoginSignupPage(driver);
-        successPage = new RegisterationSuccessPage(driver);
         homepage = new Homepage(driver);
-        registerationPage = new RegisterationPage(driver);
-        delete = new AcountDeletionPage(driver);
-        contact = new ContactUsPage(driver);
         testCases = new TestCasesPage(driver);
         driver.navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
     public void userCanNavigateToTestCasesPageSuccessfully() {
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.clickOnTestCasesLink();
-        testCases.checkThatTestCasesPageLoadedSuccessfully();
+        homepage.checkThatUserNavigatedToHomePage()
+                .checkThatUserNavigatedToHomePage()
+                .clickOnTestCasesLink()
+                .checkThatTestCasesPageLoadedSuccessfully();
     }
 
     @AfterClass

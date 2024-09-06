@@ -31,29 +31,39 @@ public class ContactUsPage {
     /**
      * Assertions
      */
-    public void checkThatContactUsPageLoadedSuccessfully() {
+    public ContactUsPage checkThatContactUsPageLoadedSuccessfully() {
         Assert.assertTrue(driver.getCurrentUrl().contains("/contact_us"));
         Assert.assertTrue(driver.findElement(loc_contactUsPage).isDisplayed());
         Assert.assertTrue(driver.findElement(loc_keepOnTouchLabel).isDisplayed());
+        return this;
     }
 
-    public void userContactedUsSuccessfully(){
+    public ContactUsPage userContactedUsSuccessfully(){
         Assert.assertTrue(driver.findElement(loc_contactUsSuccessfullLabel).isDisplayed());
+        return this;
     }
 
     /**
      * Actions
      */
-    public void fillContactUsForm(String name, String email, String subject, String message) {
+    public ContactUsPage fillContactUsForm(String name, String email, String subject, String message) {
         driver.findElement(loc_name).sendKeys(name);
         driver.findElement(loc_email).sendKeys(email);
         driver.findElement(loc_subject).sendKeys(subject);
         driver.findElement(loc_message).sendKeys(message);
         driver.findElement(loc_submitButton).click();
+        driver.switchTo().alert().accept();
+        return  this;
     }
 
-    public void clickHome() {
+    public Homepage clickHome() {
         driver.findElement(loc_homeButton).click();
+        return new Homepage(driver);
+    }
+
+    public ContactUsPage clickOnContactUsLink() {
+        driver.findElement(loc_contactUsPage).click();
+        return  this;
     }
 }
 

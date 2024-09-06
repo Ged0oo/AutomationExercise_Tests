@@ -17,29 +17,23 @@ public class RegisterUserWithExistingEmail {
     private static final Logger log = LoggerFactory.getLogger(RegisterUserWithExistingEmail.class);
     WebDriver driver;
     LoginSignupPage login;
-    RegisterationSuccessPage successPage;
     Homepage homepage;
-    RegisterationPage registerationPage;
-    AcountDeletionPage delete;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         login = new LoginSignupPage(driver);
-        successPage = new RegisterationSuccessPage(driver);
         homepage = new Homepage(driver);
-        registerationPage = new RegisterationPage(driver);
-        delete = new AcountDeletionPage(driver);
         driver.navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
     public void userCanNotLoginSuccessfully() {
-        homepage.checkThatUserNavigatedToHomePage();
-        homepage.clickOnSignUpLink();
-        login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillSignUpForm("632273@jfg.vv", "Mohamed Nagy");
+        homepage.checkThatUserNavigatedToHomePage()
+                .clickOnSignUpLink()
+                .checkThatUserNavigatedToLogInSignUpPage()
+                .fillSignUpForm("632273@jfg.vv", "Mohamed Nagy");
         login.checkThatUserCanNotSignUpWithExistingAccount();
     }
 
