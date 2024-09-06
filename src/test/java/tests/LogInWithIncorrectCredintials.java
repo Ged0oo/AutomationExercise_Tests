@@ -45,7 +45,7 @@ public class LogInWithIncorrectCredintials {
     @AfterClass
     public void tearDown() {
         driver.manage().deleteAllCookies();
-        //driver.quit();
+        driver.quit();
     }
 
 }

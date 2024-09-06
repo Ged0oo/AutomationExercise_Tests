@@ -12,15 +12,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class LogInWithCorrectCredintials {
+public class TestCasesPageTest {
 
-    private static final Logger log = LoggerFactory.getLogger(LogInWithCorrectCredintials.class);
     WebDriver driver;
     LoginSignupPage login;
     RegisterationSuccessPage successPage;
     Homepage homepage;
     RegisterationPage registerationPage;
     AcountDeletionPage delete;
+    ContactUsPage contact;
+    TestCasesPage testCases;
 
     @BeforeClass
     public void setUp (){
@@ -30,18 +31,17 @@ public class LogInWithCorrectCredintials {
         homepage = new Homepage(driver);
         registerationPage = new RegisterationPage(driver);
         delete = new AcountDeletionPage(driver);
+        contact = new ContactUsPage(driver);
+        testCases = new TestCasesPage(driver);
         driver.navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
-    public void userCanLoginSuccessfully() {
+    public void userCanNavigateToTestCasesPageSuccessfully() {
         homepage.checkThatUserNavigatedToHomePage();
-        homepage.clickOnSignUpLink();
-        login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillLoginForm("632273@jfg.vv", "19919690mN@");
-        homepage.checkThatUserLoggedInSuccessfully();
-        homepage.clickOnDeleteAccountLink();
-        delete.checkThatAccountDeletedSuccessfully();
+        homepage.checkThatUserNavigatedToHomePage();
+        homepage.clickOnTestCasesLink();
+        testCases.checkThatTestCasesPageLoadedSuccessfully();
     }
 
     @AfterClass

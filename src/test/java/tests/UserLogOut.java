@@ -55,7 +55,7 @@ public class UserLogOut {
     @AfterClass
     public void tearDown() {
         driver.manage().deleteAllCookies();
-        //driver.quit();
+        driver.quit();
     }
 
 }

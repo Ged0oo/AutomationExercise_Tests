@@ -45,7 +45,7 @@ public class RegisterUserWithExistingEmail {
     @AfterClass
     public void tearDown() {
         driver.manage().deleteAllCookies();
-        //driver.quit();
+        driver.quit();
     }
 
 }

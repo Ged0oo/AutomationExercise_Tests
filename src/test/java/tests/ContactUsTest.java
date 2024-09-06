@@ -49,7 +49,7 @@ public class ContactUsTest {
     @AfterClass
     public void tearDown() {
         driver.manage().deleteAllCookies();
-        //driver.quit();
+        driver.quit();
     }
 
 }

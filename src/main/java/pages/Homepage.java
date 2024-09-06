@@ -23,6 +23,8 @@ public class Homepage {
     By deletAccountLink = By.xpath("//a[@href=\"/delete_account\"]\n");
     By logedInAs = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a");
     By contactUsLink = By.xpath("//a[@href=\"/contact_us\"]");
+    By testCasesLink = By.xpath("//a[@href=\"/test_cases\"]");
+
 
     /**
      * Assertions
@@ -56,6 +58,10 @@ public class Homepage {
 
     public void clickOnContactUsLink(){
         driver.findElement(contactUsLink).click();
+    }
+
+    public void clickOnTestCasesLink(){
+        driver.findElement(testCasesLink).click();
     }
 
 }
