@@ -27,6 +27,7 @@ public class LoginSignupPage {
 
     By newUserSignUpLabel = By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/h2");
     By logInYourAccountLabel = By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/h2");
+    By logInIncorrectCridentialsLabel = By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/p");
 
     /**
      * Assertions
@@ -35,6 +36,10 @@ public class LoginSignupPage {
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
         Assert.assertTrue(driver.findElement(newUserSignUpLabel).isDisplayed());
         Assert.assertTrue(driver.findElement(logInYourAccountLabel).isDisplayed());
+    }
+
+    public void checkThatUserCanNotLogInWithIncorrectCridentials() {
+        Assert.assertTrue(driver.findElement(logInIncorrectCridentialsLabel).isDisplayed());
     }
 
     /**
