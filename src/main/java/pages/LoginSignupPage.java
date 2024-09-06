@@ -20,9 +20,11 @@ public class LoginSignupPage {
     By signUpMail = By.xpath("//input[@data-qa=\"signup-email\"]");
     By signUpName = By.xpath("//input[@data-qa=\"signup-name\"]");
     By signUpButton = By.xpath("//button[@data-qa=\"signup-button\"]");
+
     By logInEmail = By.xpath("//input[@data-qa=\"login-email\"]");
     By logInPassword = By.xpath("//input[@data-qa=\"login-password\"]");
     By logInButton = By.xpath("//button[@data-qa=\"login-button\"]");
+
     By newUserSignUpLabel = By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/h2");
     By logInYourAccountLabel = By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/h2");
 
