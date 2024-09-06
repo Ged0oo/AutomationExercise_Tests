@@ -1,4 +1,6 @@
 package tests;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +12,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class newtest {
+public class UserLogOut {
 
+    private static final Logger log = LoggerFactory.getLogger(LogInWithCorrectCredintials.class);
     WebDriver driver;
     LoginSignupPage login;
     RegisterationSuccessPage successPage;
@@ -31,36 +34,22 @@ public class newtest {
     }
 
     @Test(priority = 1)
-    public void userCanRegisterSuccessfully() {
+    public void userCanLoginSuccessfully() {
         homepage.checkThatUserNavigatedToHomePage();
         homepage.clickOnSignUpLink();
         login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillSignUpForm("dsdsd@jfg.vv", "Mohamed Nagy");
-        registerationPage.checkThatRegisterationPageLoaded();
-        registerationPage.fillInAccountInformation("male", "al933@jfg.vv", "19919690mN@", "15", "6", "2001");
-        registerationPage.fillInAddressInformation("Mohamed", "Nagy", "DEPI", "Alexandria", "Smouha", "Singapore", "Waly", "Maly", "22346", "01553158667");
-        successPage.checkThatAccountCreatedSuccessfully();
-        successPage.clickContinueButton();
-        driver.manage().deleteAllCookies();
-    }
-
-    @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
-    public void userCanLoginSuccessfully() {
-        driver.navigate().to("https://automationexercise.com/login");
-        login.fillLoginForm("ajkn0h@jfg.vv", "19919690mN@");
+        login.fillLoginForm("632273@jfg.vv", "19919690mN@");
         homepage.checkThatUserLoggedInSuccessfully();
-        homepage.checkThatLogoutLinkShouldBeDisplayed();
     }
 
-    @Test(priority = 3, dependsOnMethods = "userCanLoginSuccessfully")
-    public void userCanDeleteAccountSuccessfully() {
+    @Test(priority = 2, dependsOnMethods = "userCanLoginSuccessfully")
+    public void userCanLogOutAccountSuccessfully() {
         driver.navigate().to("https://automationexercise.com/");
         homepage.checkThatUserNavigatedToHomePage();
         homepage.checkThatUserLoggedInSuccessfully();
         homepage.checkThatLogoutLinkShouldBeDisplayed();
-        homepage.clickOnDeleteAccountLink();
-        delete.checkThatAccountDeletedSuccessfully();
-        delete.clickContinueButton();
+        homepage.clickOnLogoutLink();
+        login.checkThatUserNavigatedToLogInSignUpPage();
     }
 
     @AfterClass

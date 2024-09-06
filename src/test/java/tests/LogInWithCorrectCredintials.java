@@ -38,7 +38,7 @@ public class LogInWithCorrectCredintials {
         homepage.checkThatUserNavigatedToHomePage();
         homepage.clickOnSignUpLink();
         login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillLoginForm("al933@jfg.vv", "19919690mN@");
+        login.fillLoginForm("632273@jfg.vv", "19919690mN@");
         homepage.checkThatUserLoggedInSuccessfully();
         homepage.clickOnDeleteAccountLink();
         delete.checkThatAccountDeletedSuccessfully();
