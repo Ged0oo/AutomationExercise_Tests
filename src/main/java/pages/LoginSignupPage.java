@@ -28,6 +28,7 @@ public class LoginSignupPage {
     By newUserSignUpLabel = By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/h2");
     By logInYourAccountLabel = By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/h2");
     By logInIncorrectCridentialsLabel = By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/p");
+    By existingMailAddressLabel = By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/p");
 
     /**
      * Assertions
@@ -40,6 +41,10 @@ public class LoginSignupPage {
 
     public void checkThatUserCanNotLogInWithIncorrectCridentials() {
         Assert.assertTrue(driver.findElement(logInIncorrectCridentialsLabel).isDisplayed());
+    }
+
+    public void checkThatUserCanNotSignUpWithExistingAccount() {
+        Assert.assertTrue(driver.findElement(existingMailAddressLabel).isDisplayed());
     }
 
     /**
