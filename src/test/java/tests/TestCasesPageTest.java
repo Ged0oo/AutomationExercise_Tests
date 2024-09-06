@@ -25,6 +25,7 @@ public class TestCasesPageTest {
 
     @BeforeClass
     public void setUp (){
+        //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         login = new LoginSignupPage(driver);
         successPage = new RegisterationSuccessPage(driver);

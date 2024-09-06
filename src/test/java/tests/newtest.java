@@ -21,6 +21,7 @@ public class newtest {
 
     @BeforeClass
     public void setUp (){
+        //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         login = new LoginSignupPage(driver);
         successPage = new RegisterationSuccessPage(driver);
@@ -35,7 +36,7 @@ public class newtest {
         homepage.checkThatUserNavigatedToHomePage();
         homepage.clickOnSignUpLink();
         login.checkThatUserNavigatedToLogInSignUpPage();
-        login.fillSignUpForm("dsdsd@jfg.vv", "Mohamed Nagy");
+        login.fillSignUpForm("dsdskkd@jfg.vv", "Mohamed Nagy");
         registerationPage.checkThatRegisterationPageLoaded();
         registerationPage.fillInAccountInformation("male", "al933@jfg.vv", "19919690mN@", "15", "6", "2001");
         registerationPage.fillInAddressInformation("Mohamed", "Nagy", "DEPI", "Alexandria", "Smouha", "Singapore", "Waly", "Maly", "22346", "01553158667");
@@ -47,7 +48,7 @@ public class newtest {
     @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
     public void userCanLoginSuccessfully() {
         driver.navigate().to("https://automationexercise.com/login");
-        login.fillLoginForm("ajkn0h@jfg.vv", "19919690mN@");
+        login.fillLoginForm("dsdskkd@jfg.vv", "19919690mN@");
         homepage.checkThatUserLoggedInSuccessfully();
         homepage.checkThatLogoutLinkShouldBeDisplayed();
     }
