@@ -36,13 +36,13 @@ public class ContactUsPage {
      */
     public ContactUsPage checkThatContactUsPageLoadedSuccessfully() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("/contact_us"));
-        Assert.assertTrue(driver.get().findElement(loc_contactUsPage).isDisplayed());
-        Assert.assertTrue(driver.get().findElement(loc_keepOnTouchLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(loc_contactUsPage));
+        Assert.assertTrue(driver.element().isDisplayed(loc_keepOnTouchLabel));
         return this;
     }
 
     public ContactUsPage userContactedUsSuccessfully(){
-        Assert.assertTrue(driver.get().findElement(loc_contactUsSuccessfullLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(loc_contactUsSuccessfullLabel));
         return this;
     }
 
@@ -50,22 +50,22 @@ public class ContactUsPage {
      * Actions
      */
     public ContactUsPage fillContactUsForm(String name, String email, String subject, String message) {
-        driver.get().findElement(loc_name).sendKeys(name);
-        driver.get().findElement(loc_email).sendKeys(email);
-        driver.get().findElement(loc_subject).sendKeys(subject);
-        driver.get().findElement(loc_message).sendKeys(message);
-        driver.get().findElement(loc_submitButton).click();
+        driver.element().fillField(loc_name, name);
+        driver.element().fillField(loc_email, email);
+        driver.element().fillField(loc_subject, subject);
+        driver.element().fillField(loc_message, message);
+        driver.element().click(loc_submitButton);
         driver.get().switchTo().alert().accept();
         return  this;
     }
 
     public Homepage clickHome() {
-        driver.get().findElement(loc_homeButton).click();
+        driver.element().click(loc_homeButton);
         return new Homepage(driver);
     }
 
     public ContactUsPage clickOnContactUsLink() {
-        driver.get().findElement(loc_contactUsPage).click();
+        driver.element().click(loc_contactUsPage);
         return  this;
     }
 }

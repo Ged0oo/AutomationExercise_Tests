@@ -27,7 +27,7 @@ public class RegisterationSuccessPage {
      */
     public RegisterationSuccessPage checkThatAccountCreatedSuccessfully() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("/account_created"));
-        Assert.assertTrue(driver.get().findElement(successMessage).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(successMessage));
         return this;
     }
 
@@ -35,6 +35,6 @@ public class RegisterationSuccessPage {
      * Actions
      */
     public void clickContinueButton() {
-        driver.get().findElement(continueButton).click();
+        driver.element().click(continueButton);
     }
 }

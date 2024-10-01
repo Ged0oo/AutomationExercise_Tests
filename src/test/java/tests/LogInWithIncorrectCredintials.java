@@ -23,6 +23,7 @@ public class LogInWithIncorrectCredintials {
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        driver = new Driver("CHROME");
         login = new LoginSignupPage(driver);
         homepage = new Homepage(driver);
         driver.get().navigate().to("https://automationexercise.com/");

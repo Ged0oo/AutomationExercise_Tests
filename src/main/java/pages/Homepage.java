@@ -30,7 +30,7 @@ public class Homepage {
      * Assertions
      */
     public Homepage checkThatLogoutLinkShouldBeDisplayed() {
-        Assert.assertTrue(driver.get().findElement(logOutLink).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(logOutLink));
         return this;
     }
 
@@ -40,7 +40,7 @@ public class Homepage {
     }
 
     public Homepage checkThatUserLoggedInSuccessfully() {
-        Assert.assertTrue(driver.get().findElement(logedInAs).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(logedInAs));
         return this;
     }
 
@@ -48,26 +48,24 @@ public class Homepage {
      * Actions
      */
     public LoginSignupPage clickOnSignUpLink(){
-        driver.get().findElement(signUpLogInLink).click();
+        driver.element().click(signUpLogInLink);
         return new LoginSignupPage(driver);
     }
 
-    public void clickOnLogoutLink(){
-        driver.get().findElement(logOutLink).click();
-    }
+    public void clickOnLogoutLink(){driver.element().click(logOutLink);}
 
     public AcountDeletionPage clickOnDeleteAccountLink(){
-        driver.get().findElement(deletAccountLink).click();
+        driver.element().click(deletAccountLink);
         return new AcountDeletionPage(driver);
     }
 
     public ContactUsPage clickOnContactUsLink(){
-        driver.get().findElement(contactUsLink).click();
+        driver.element().click(contactUsLink);
         return new ContactUsPage(driver);
     }
 
     public TestCasesPage clickOnTestCasesLink(){
-        driver.get().findElement(testCasesLink).click();
+        driver.element().click(testCasesLink);
         return new TestCasesPage(driver);
     }
 

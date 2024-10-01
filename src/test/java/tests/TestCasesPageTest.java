@@ -22,6 +22,7 @@ public class TestCasesPageTest {
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        driver = new Driver("CHROME");
         homepage = new Homepage(driver);
         testCases = new TestCasesPage(driver);
         driver.get().navigate().to("https://automationexercise.com/");

@@ -29,4 +29,9 @@ public class ElementActions {
     public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
+
+    public boolean isDisplayed(By locator) {
+        return driver.findElement(locator).isDisplayed();
+    }
+
 }

@@ -26,7 +26,7 @@ public class AcountDeletionPage {
      */
     public AcountDeletionPage checkThatAccountDeletedSuccessfully() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("/delete_account"));
-        Assert.assertTrue(driver.get().findElement(accoutDeletedLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(accoutDeletedLabel));
         return this;
     }
 
@@ -35,7 +35,7 @@ public class AcountDeletionPage {
      * Actions
      */
     public Homepage clickContinueButton() {
-        driver.get().findElement(continueButton).click();
+        driver.element().click(continueButton);
         return new Homepage(driver);
     }
 }

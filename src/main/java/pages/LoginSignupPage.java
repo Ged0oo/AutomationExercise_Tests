@@ -36,33 +36,33 @@ public class LoginSignupPage {
      */
     public LoginSignupPage checkThatUserNavigatedToLogInSignUpPage() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("/login"));
-        Assert.assertTrue(driver.get().findElement(newUserSignUpLabel).isDisplayed());
-        Assert.assertTrue(driver.get().findElement(logInYourAccountLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(newUserSignUpLabel));
+        Assert.assertTrue(driver.element().isDisplayed(logInYourAccountLabel));
         return this;
     }
 
     public void checkThatUserCanNotLogInWithIncorrectCridentials() {
-        Assert.assertTrue(driver.get().findElement(logInIncorrectCridentialsLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(logInIncorrectCridentialsLabel));
     }
 
     public void checkThatUserCanNotSignUpWithExistingAccount() {
-        Assert.assertTrue(driver.get().findElement(existingMailAddressLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(existingMailAddressLabel));
     }
 
     /**
      * Actions
      */
     public Homepage fillLoginForm(String email, String password) {
-        driver.get().findElement(logInEmail).sendKeys(email);
-        driver.get().findElement(logInPassword).sendKeys(password);
-        driver.get().findElement(logInButton).click();
+        driver.element().fillField(logInEmail, email);
+        driver.element().fillField(logInPassword, password);
+        driver.element().click(logInButton);
         return new Homepage(driver);
     }
 
     public RegisterationPage fillSignUpForm(String email, String name) {
-        driver.get().findElement(signUpMail).sendKeys(email);
-        driver.get().findElement(signUpName).sendKeys(name);
-        driver.get().findElement(signUpButton).click();
+        driver.element().fillField(signUpMail, email);
+        driver.element().fillField(signUpName, name);
+        driver.element().click(signUpButton);
         return new RegisterationPage(driver);
     }
 

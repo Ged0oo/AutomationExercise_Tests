@@ -45,7 +45,7 @@ public class RegisterationPage {
      */
     public RegisterationPage checkThatRegisterationPageLoaded() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("signup"));
-        Assert.assertTrue(driver.get().findElement(loc_EnterAccountInformationLabel).isDisplayed());
+        Assert.assertTrue(driver.element().isDisplayed(loc_EnterAccountInformationLabel));
         return this;
     }
 
@@ -55,45 +55,42 @@ public class RegisterationPage {
     public RegisterationPage fillInAccountInformation(String gender, String email, String password, String day, String month, String year) {
 
         if(gender.equals("male"))
-            driver.get().findElement(loc_idGenderMr).click();
+            driver.element().click(loc_idGenderMr);
         else if(gender.equals("female"))
-            driver.get().findElement(loc_idGenderMrs).click();
+            driver.element().click(loc_idGenderMrs);
 
-        driver.get().findElement(loc_password).sendKeys(password);
+        driver.element().fillField(loc_password, password);
 
         Select sel_day = new Select(driver.get().findElement(loc_day));
         sel_day.selectByValue(day);
-
         Select sel_month = new Select(driver.get().findElement(loc_month));
         sel_month.selectByValue(month);
-
         Select sel_year = new Select(driver.get().findElement(loc_year));
         sel_year.selectByValue(year);
 
-        driver.get().findElement(loc_newsTeller).click();
-        driver.get().findElement(loc_option).click();
+        driver.element().click(loc_newsTeller);
+        driver.element().click(loc_option);
 
         return this;
     }
 
     public RegisterationSuccessPage fillInAddressInformation(String firstName, String lastName, String company, String address_1, String address_2, String country, String state, String city, String zipCode, String mobile) {
-        driver.get().findElement(loc_firstName).sendKeys(firstName);
-        driver.get().findElement(loc_lastName).sendKeys(lastName);
-        driver.get().findElement(loc_company).sendKeys(company);
-        driver.get().findElement(loc_firstAddress).sendKeys(address_1);
-        driver.get().findElement(loc_lastAddress).sendKeys(address_2);
+        driver.element().fillField(loc_firstName,firstName);
+        driver.element().fillField(loc_lastName,lastName);
+        driver.element().fillField(loc_company,company);
+        driver.element().fillField(loc_firstAddress,address_1);
+        driver.element().fillField(loc_lastAddress,address_2);
 
         Select sel_country = new Select(driver.get().findElement(loc_country));
         sel_country.selectByValue(country);
 
-        driver.get().findElement(loc_state).sendKeys(state);
-        driver.get().findElement(loc_city).sendKeys(city);
-        driver.get().findElement(loc_zipCode).sendKeys(zipCode);
-        driver.get().findElement(loc_mobileNumber).sendKeys(mobile);
+        driver.element().fillField(loc_state,state);
+        driver.element().fillField(loc_city,city);
+        driver.element().fillField(loc_zipCode,zipCode);
+        driver.element().fillField(loc_mobileNumber,mobile);
 
-        driver.get().findElement(loc_createAccount).click();
+        driver.element().click(loc_createAccount);
 
         return new RegisterationSuccessPage(driver);
     }
-
 }
