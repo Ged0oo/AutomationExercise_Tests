@@ -1,4 +1,5 @@
 package tests;
+import driverFactory.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -14,17 +15,16 @@ import pages.*;
 
 public class TestCasesPageTest {
 
-    WebDriver driver;
+    Driver driver;
     Homepage homepage;
     TestCasesPage testCases;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        driver = new ChromeDriver();
         homepage = new Homepage(driver);
         testCases = new TestCasesPage(driver);
-        driver.navigate().to("https://automationexercise.com/");
+        driver.get().navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
@@ -37,7 +37,7 @@ public class TestCasesPageTest {
 
     @AfterClass
     public void tearDown() {
-        driver.manage().deleteAllCookies();
+        driver.get().manage().deleteAllCookies();
         driver.quit();
     }
 

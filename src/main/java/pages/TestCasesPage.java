@@ -1,4 +1,5 @@
 package pages;
+import driverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +10,8 @@ public class TestCasesPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public TestCasesPage(WebDriver driver) {
+    public Driver driver;
+    public TestCasesPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -23,8 +24,8 @@ public class TestCasesPage {
      * Assertions
      */
     public void checkThatTestCasesPageLoadedSuccessfully() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("/test_cases"));
-        Assert.assertTrue(driver.findElement(loc_testCasesLabel).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("/test_cases"));
+        Assert.assertTrue(driver.get().findElement(loc_testCasesLabel).isDisplayed());
     }
 
     /**

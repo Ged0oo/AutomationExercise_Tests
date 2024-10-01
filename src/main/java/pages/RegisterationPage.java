@@ -1,5 +1,6 @@
 package pages;
 
+import driverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -10,8 +11,8 @@ public class RegisterationPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public RegisterationPage(WebDriver driver) {
+    public Driver driver;
+    public RegisterationPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -43,8 +44,8 @@ public class RegisterationPage {
      * Assertions
      */
     public RegisterationPage checkThatRegisterationPageLoaded() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("signup"));
-        Assert.assertTrue(driver.findElement(loc_EnterAccountInformationLabel).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("signup"));
+        Assert.assertTrue(driver.get().findElement(loc_EnterAccountInformationLabel).isDisplayed());
         return this;
     }
 
@@ -54,43 +55,43 @@ public class RegisterationPage {
     public RegisterationPage fillInAccountInformation(String gender, String email, String password, String day, String month, String year) {
 
         if(gender.equals("male"))
-            driver.findElement(loc_idGenderMr).click();
+            driver.get().findElement(loc_idGenderMr).click();
         else if(gender.equals("female"))
-            driver.findElement(loc_idGenderMrs).click();
+            driver.get().findElement(loc_idGenderMrs).click();
 
-        driver.findElement(loc_password).sendKeys(password);
+        driver.get().findElement(loc_password).sendKeys(password);
 
-        Select sel_day = new Select(driver.findElement(loc_day));
+        Select sel_day = new Select(driver.get().findElement(loc_day));
         sel_day.selectByValue(day);
 
-        Select sel_month = new Select(driver.findElement(loc_month));
+        Select sel_month = new Select(driver.get().findElement(loc_month));
         sel_month.selectByValue(month);
 
-        Select sel_year = new Select(driver.findElement(loc_year));
+        Select sel_year = new Select(driver.get().findElement(loc_year));
         sel_year.selectByValue(year);
 
-        driver.findElement(loc_newsTeller).click();
-        driver.findElement(loc_option).click();
+        driver.get().findElement(loc_newsTeller).click();
+        driver.get().findElement(loc_option).click();
 
         return this;
     }
 
     public RegisterationSuccessPage fillInAddressInformation(String firstName, String lastName, String company, String address_1, String address_2, String country, String state, String city, String zipCode, String mobile) {
-        driver.findElement(loc_firstName).sendKeys(firstName);
-        driver.findElement(loc_lastName).sendKeys(lastName);
-        driver.findElement(loc_company).sendKeys(company);
-        driver.findElement(loc_firstAddress).sendKeys(address_1);
-        driver.findElement(loc_lastAddress).sendKeys(address_2);
+        driver.get().findElement(loc_firstName).sendKeys(firstName);
+        driver.get().findElement(loc_lastName).sendKeys(lastName);
+        driver.get().findElement(loc_company).sendKeys(company);
+        driver.get().findElement(loc_firstAddress).sendKeys(address_1);
+        driver.get().findElement(loc_lastAddress).sendKeys(address_2);
 
-        Select sel_country = new Select(driver.findElement(loc_country));
+        Select sel_country = new Select(driver.get().findElement(loc_country));
         sel_country.selectByValue(country);
 
-        driver.findElement(loc_state).sendKeys(state);
-        driver.findElement(loc_city).sendKeys(city);
-        driver.findElement(loc_zipCode).sendKeys(zipCode);
-        driver.findElement(loc_mobileNumber).sendKeys(mobile);
+        driver.get().findElement(loc_state).sendKeys(state);
+        driver.get().findElement(loc_city).sendKeys(city);
+        driver.get().findElement(loc_zipCode).sendKeys(zipCode);
+        driver.get().findElement(loc_mobileNumber).sendKeys(mobile);
 
-        driver.findElement(loc_createAccount).click();
+        driver.get().findElement(loc_createAccount).click();
 
         return new RegisterationSuccessPage(driver);
     }

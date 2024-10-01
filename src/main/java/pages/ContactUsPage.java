@@ -1,4 +1,6 @@
 package pages;
+import driverFactory.Driver;
+import elementActions.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +11,9 @@ public class ContactUsPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public ContactUsPage(WebDriver driver) {
+    public Driver driver;
+//    public WebDriver driver;
+    public ContactUsPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -32,14 +35,14 @@ public class ContactUsPage {
      * Assertions
      */
     public ContactUsPage checkThatContactUsPageLoadedSuccessfully() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("/contact_us"));
-        Assert.assertTrue(driver.findElement(loc_contactUsPage).isDisplayed());
-        Assert.assertTrue(driver.findElement(loc_keepOnTouchLabel).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("/contact_us"));
+        Assert.assertTrue(driver.get().findElement(loc_contactUsPage).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(loc_keepOnTouchLabel).isDisplayed());
         return this;
     }
 
     public ContactUsPage userContactedUsSuccessfully(){
-        Assert.assertTrue(driver.findElement(loc_contactUsSuccessfullLabel).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(loc_contactUsSuccessfullLabel).isDisplayed());
         return this;
     }
 
@@ -47,22 +50,22 @@ public class ContactUsPage {
      * Actions
      */
     public ContactUsPage fillContactUsForm(String name, String email, String subject, String message) {
-        driver.findElement(loc_name).sendKeys(name);
-        driver.findElement(loc_email).sendKeys(email);
-        driver.findElement(loc_subject).sendKeys(subject);
-        driver.findElement(loc_message).sendKeys(message);
-        driver.findElement(loc_submitButton).click();
-        driver.switchTo().alert().accept();
+        driver.get().findElement(loc_name).sendKeys(name);
+        driver.get().findElement(loc_email).sendKeys(email);
+        driver.get().findElement(loc_subject).sendKeys(subject);
+        driver.get().findElement(loc_message).sendKeys(message);
+        driver.get().findElement(loc_submitButton).click();
+        driver.get().switchTo().alert().accept();
         return  this;
     }
 
     public Homepage clickHome() {
-        driver.findElement(loc_homeButton).click();
+        driver.get().findElement(loc_homeButton).click();
         return new Homepage(driver);
     }
 
     public ContactUsPage clickOnContactUsLink() {
-        driver.findElement(loc_contactUsPage).click();
+        driver.get().findElement(loc_contactUsPage).click();
         return  this;
     }
 }

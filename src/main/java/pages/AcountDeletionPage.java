@@ -1,5 +1,6 @@
 package pages;
 
+import driverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -8,8 +9,8 @@ public class AcountDeletionPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public AcountDeletionPage(WebDriver driver) {
+    public Driver driver;
+    public AcountDeletionPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -24,8 +25,8 @@ public class AcountDeletionPage {
      * Assertions
      */
     public AcountDeletionPage checkThatAccountDeletedSuccessfully() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("/delete_account"));
-        Assert.assertTrue(driver.findElement(accoutDeletedLabel).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("/delete_account"));
+        Assert.assertTrue(driver.get().findElement(accoutDeletedLabel).isDisplayed());
         return this;
     }
 
@@ -34,7 +35,7 @@ public class AcountDeletionPage {
      * Actions
      */
     public Homepage clickContinueButton() {
-        driver.findElement(continueButton).click();
+        driver.get().findElement(continueButton).click();
         return new Homepage(driver);
     }
 }

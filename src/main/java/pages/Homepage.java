@@ -1,5 +1,6 @@
 package pages;
 
+import driverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,8 +10,8 @@ public class Homepage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public Homepage(WebDriver driver) {
+    public Driver driver;
+    public Homepage(Driver driver) {
         this.driver = driver;
     }
 
@@ -29,17 +30,17 @@ public class Homepage {
      * Assertions
      */
     public Homepage checkThatLogoutLinkShouldBeDisplayed() {
-        Assert.assertTrue(driver.findElement(logOutLink).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(logOutLink).isDisplayed());
         return this;
     }
 
     public Homepage checkThatUserNavigatedToHomePage() {
-        Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/");
+        Assert.assertEquals(driver.get().getCurrentUrl(), "https://automationexercise.com/");
         return this;
     }
 
     public Homepage checkThatUserLoggedInSuccessfully() {
-        Assert.assertTrue(driver.findElement(logedInAs).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(logedInAs).isDisplayed());
         return this;
     }
 
@@ -47,26 +48,26 @@ public class Homepage {
      * Actions
      */
     public LoginSignupPage clickOnSignUpLink(){
-        driver.findElement(signUpLogInLink).click();
+        driver.get().findElement(signUpLogInLink).click();
         return new LoginSignupPage(driver);
     }
 
     public void clickOnLogoutLink(){
-        driver.findElement(logOutLink).click();
+        driver.get().findElement(logOutLink).click();
     }
 
     public AcountDeletionPage clickOnDeleteAccountLink(){
-        driver.findElement(deletAccountLink).click();
+        driver.get().findElement(deletAccountLink).click();
         return new AcountDeletionPage(driver);
     }
 
     public ContactUsPage clickOnContactUsLink(){
-        driver.findElement(contactUsLink).click();
+        driver.get().findElement(contactUsLink).click();
         return new ContactUsPage(driver);
     }
 
     public TestCasesPage clickOnTestCasesLink(){
-        driver.findElement(testCasesLink).click();
+        driver.get().findElement(testCasesLink).click();
         return new TestCasesPage(driver);
     }
 

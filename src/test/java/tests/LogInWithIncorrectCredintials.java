@@ -1,4 +1,5 @@
 package tests;
+import driverFactory.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -15,17 +16,16 @@ import pages.*;
 public class LogInWithIncorrectCredintials {
 
     private static final Logger log = LoggerFactory.getLogger(LogInWithCorrectCredintials.class);
-    WebDriver driver;
+    Driver driver;
     LoginSignupPage login;
     Homepage homepage;
 
     @BeforeClass
     public void setUp (){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        driver = new ChromeDriver();
         login = new LoginSignupPage(driver);
         homepage = new Homepage(driver);
-        driver.navigate().to("https://automationexercise.com/");
+        driver.get().navigate().to("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
@@ -39,7 +39,7 @@ public class LogInWithIncorrectCredintials {
 
     @AfterClass
     public void tearDown() {
-        driver.manage().deleteAllCookies();
+        driver.get().manage().deleteAllCookies();
         driver.quit();
     }
 

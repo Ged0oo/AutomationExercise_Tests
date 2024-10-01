@@ -1,5 +1,6 @@
 package pages;
 
+import driverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +11,8 @@ public class RegisterationSuccessPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public RegisterationSuccessPage(WebDriver driver) {
+    public Driver driver;
+    public RegisterationSuccessPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -25,8 +26,8 @@ public class RegisterationSuccessPage {
      * Assertions
      */
     public RegisterationSuccessPage checkThatAccountCreatedSuccessfully() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("/account_created"));
-        Assert.assertTrue(driver.findElement(successMessage).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("/account_created"));
+        Assert.assertTrue(driver.get().findElement(successMessage).isDisplayed());
         return this;
     }
 
@@ -34,6 +35,6 @@ public class RegisterationSuccessPage {
      * Actions
      */
     public void clickContinueButton() {
-        driver.findElement(continueButton).click();
+        driver.get().findElement(continueButton).click();
     }
 }

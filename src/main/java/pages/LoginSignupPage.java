@@ -1,5 +1,6 @@
 package pages;
 
+import driverFactory.Driver;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +10,8 @@ public class LoginSignupPage {
     /**
      * Constructor
      */
-    public WebDriver driver;
-    public LoginSignupPage(WebDriver driver) {
+    public Driver driver;
+    public LoginSignupPage(Driver driver) {
         this.driver = driver;
     }
 
@@ -34,34 +35,34 @@ public class LoginSignupPage {
      * Assertions
      */
     public LoginSignupPage checkThatUserNavigatedToLogInSignUpPage() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
-        Assert.assertTrue(driver.findElement(newUserSignUpLabel).isDisplayed());
-        Assert.assertTrue(driver.findElement(logInYourAccountLabel).isDisplayed());
+        Assert.assertTrue(driver.get().getCurrentUrl().contains("/login"));
+        Assert.assertTrue(driver.get().findElement(newUserSignUpLabel).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(logInYourAccountLabel).isDisplayed());
         return this;
     }
 
     public void checkThatUserCanNotLogInWithIncorrectCridentials() {
-        Assert.assertTrue(driver.findElement(logInIncorrectCridentialsLabel).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(logInIncorrectCridentialsLabel).isDisplayed());
     }
 
     public void checkThatUserCanNotSignUpWithExistingAccount() {
-        Assert.assertTrue(driver.findElement(existingMailAddressLabel).isDisplayed());
+        Assert.assertTrue(driver.get().findElement(existingMailAddressLabel).isDisplayed());
     }
 
     /**
      * Actions
      */
     public Homepage fillLoginForm(String email, String password) {
-        driver.findElement(logInEmail).sendKeys(email);
-        driver.findElement(logInPassword).sendKeys(password);
-        driver.findElement(logInButton).click();
+        driver.get().findElement(logInEmail).sendKeys(email);
+        driver.get().findElement(logInPassword).sendKeys(password);
+        driver.get().findElement(logInButton).click();
         return new Homepage(driver);
     }
 
     public RegisterationPage fillSignUpForm(String email, String name) {
-        driver.findElement(signUpMail).sendKeys(email);
-        driver.findElement(signUpName).sendKeys(name);
-        driver.findElement(signUpButton).click();
+        driver.get().findElement(signUpMail).sendKeys(email);
+        driver.get().findElement(signUpName).sendKeys(name);
+        driver.get().findElement(signUpButton).click();
         return new RegisterationPage(driver);
     }
 
