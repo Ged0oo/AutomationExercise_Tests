@@ -2,6 +2,7 @@ package elementActions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ElementActions {
@@ -22,7 +23,7 @@ public class ElementActions {
         return this;
     }
 
-    public ElementActions clear(By locator) {
+    public ElementActions clearField(By locator) {
         driver.findElement(locator).clear();
         return this;
     }
@@ -45,15 +46,16 @@ public class ElementActions {
         return  this;
     }
 
-    public String getTextOf(By locator) {
-        return driver.findElement(locator).getText();
-    }
-
     public Boolean isSelected(By locator) {
         return driver.findElement(locator).isSelected();
     }
 
     public Boolean isEnabled(By locator) {
         return driver.findElement(locator).isEnabled();
+    }
+
+    public  ElementActions scrollToElement(By locator) {
+        new Actions(driver).scrollToElement(driver.findElement(locator)).build().perform();
+        return this;
     }
 }

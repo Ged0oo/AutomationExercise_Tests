@@ -1,7 +1,11 @@
 package browserActions;
 
+import com.beust.ah.A;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
 
 public class BrowserActions {
 
@@ -35,8 +39,18 @@ public class BrowserActions {
         return this;
     }
 
-    public BrowserActions navigateRefresh() {
+    public BrowserActions refreshCurrentPage() {
         driver.navigate().refresh();
+        return this;
+    }
+
+    public BrowserActions scrollButtom() {
+        new Actions(driver).scrollByAmount(0, 2500).build().perform();
+        return this;
+    }
+
+    public BrowserActions scrollAmount(int weidth, int height) {
+        new Actions(driver).scrollByAmount(weidth,height).build().perform();
         return this;
     }
 
