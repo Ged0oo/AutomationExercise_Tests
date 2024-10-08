@@ -2,8 +2,6 @@ package pages;
 
 import driverFactory.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 public class Homepage {
@@ -35,7 +33,7 @@ public class Homepage {
     }
 
     public Homepage checkThatUserNavigatedToHomePage() {
-        Assert.assertEquals(driver.get().getCurrentUrl(), "https://automationexercise.com/");
+        Assert.assertEquals(driver.browser().getCurrentURL(), "https://automationexercise.com/");
         return this;
     }
 

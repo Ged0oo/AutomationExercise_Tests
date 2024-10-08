@@ -1,5 +1,6 @@
 package driverFactory;
 
+import browserActions.BrowserActions;
 import elementActions.ElementActions;
 import org.openqa.selenium.WebDriver;
 
@@ -37,4 +38,5 @@ public class Driver {
     public ElementActions element() {
         return new ElementActions(driver);
     }
+    public BrowserActions browser() {return new BrowserActions(driver);}
 }

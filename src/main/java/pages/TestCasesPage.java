@@ -24,7 +24,7 @@ public class TestCasesPage {
      * Assertions
      */
     public void checkThatTestCasesPageLoadedSuccessfully() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("/test_cases"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("/test_cases"));
         Assert.assertTrue(driver.element().isDisplayed(loc_testCasesLabel));
     }
 

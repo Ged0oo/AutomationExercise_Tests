@@ -26,7 +26,7 @@ public class UserLogOut {
         driver = new Driver("CHROME");
         login = new LoginSignupPage(driver);
         homepage = new Homepage(driver);
-        driver.get().navigate().to("https://automationexercise.com/");
+        driver.browser().navigateToURL("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
@@ -40,7 +40,7 @@ public class UserLogOut {
 
     @Test(priority = 2, dependsOnMethods = "userCanLoginSuccessfully")
     public void userCanLogOutAccountSuccessfully() {
-        driver.get().navigate().to("https://automationexercise.com/");
+        driver.browser().navigateToURL("https://automationexercise.com/");
         homepage.checkThatUserNavigatedToHomePage()
                 .checkThatUserLoggedInSuccessfully()
                 .checkThatLogoutLinkShouldBeDisplayed()
@@ -50,7 +50,7 @@ public class UserLogOut {
 
     @AfterClass
     public void tearDown() {
-        driver.get().manage().deleteAllCookies();
+        driver.browser().deleteAllCookie();
         driver.quit();
     }
 

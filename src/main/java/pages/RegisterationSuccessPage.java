@@ -26,7 +26,7 @@ public class RegisterationSuccessPage {
      * Assertions
      */
     public RegisterationSuccessPage checkThatAccountCreatedSuccessfully() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("/account_created"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("/account_created"));
         Assert.assertTrue(driver.element().isDisplayed(successMessage));
         return this;
     }

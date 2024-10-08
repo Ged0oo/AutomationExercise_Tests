@@ -25,7 +25,7 @@ public class AcountDeletionPage {
      * Assertions
      */
     public AcountDeletionPage checkThatAccountDeletedSuccessfully() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("/delete_account"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("/delete_account"));
         Assert.assertTrue(driver.element().isDisplayed(accoutDeletedLabel));
         return this;
     }

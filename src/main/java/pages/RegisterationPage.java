@@ -1,6 +1,7 @@
 package pages;
 
 import driverFactory.Driver;
+import elementActions.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -44,7 +45,7 @@ public class RegisterationPage {
      * Assertions
      */
     public RegisterationPage checkThatRegisterationPageLoaded() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("signup"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("signup"));
         Assert.assertTrue(driver.element().isDisplayed(loc_EnterAccountInformationLabel));
         return this;
     }
@@ -61,12 +62,16 @@ public class RegisterationPage {
 
         driver.element().fillField(loc_password, password);
 
-        Select sel_day = new Select(driver.get().findElement(loc_day));
-        sel_day.selectByValue(day);
-        Select sel_month = new Select(driver.get().findElement(loc_month));
-        sel_month.selectByValue(month);
-        Select sel_year = new Select(driver.get().findElement(loc_year));
-        sel_year.selectByValue(year);
+        ElementActions sel_day = driver.element().selectByValue(loc_day, day);
+        ElementActions sel_month = driver.element().selectByValue(loc_month, month);
+        ElementActions sel_year = driver.element().selectByValue(loc_year, year);
+
+//        Select sel_day = new Select(driver.get().findElement(loc_day));
+//        sel_day.selectByValue(day);
+//        Select sel_month = new Select(driver.get().findElement(loc_month));
+//        sel_month.selectByValue(month);
+//        Select sel_year = new Select(driver.get().findElement(loc_year));
+//        sel_year.selectByValue(year);
 
         driver.element().click(loc_newsTeller);
         driver.element().click(loc_option);
@@ -81,8 +86,9 @@ public class RegisterationPage {
         driver.element().fillField(loc_firstAddress,address_1);
         driver.element().fillField(loc_lastAddress,address_2);
 
-        Select sel_country = new Select(driver.get().findElement(loc_country));
-        sel_country.selectByValue(country);
+        ElementActions sel_country = driver.element().selectByValue(loc_country, country);
+//        Select sel_country = new Select(driver.get().findElement(loc_country));
+//        sel_country.selectByValue(country);
 
         driver.element().fillField(loc_state,state);
         driver.element().fillField(loc_city,city);

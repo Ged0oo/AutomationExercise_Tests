@@ -35,7 +35,7 @@ public class ContactUsPage {
      * Assertions
      */
     public ContactUsPage checkThatContactUsPageLoadedSuccessfully() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("/contact_us"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("/contact_us"));
         Assert.assertTrue(driver.element().isDisplayed(loc_contactUsPage));
         Assert.assertTrue(driver.element().isDisplayed(loc_keepOnTouchLabel));
         return this;

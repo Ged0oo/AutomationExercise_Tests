@@ -24,7 +24,7 @@ public class newtest {
         driver = new Driver("CHROME");
         login = new LoginSignupPage(driver);
         homepage = new Homepage(driver);
-        driver.get().navigate().to("https://automationexercise.com/");
+        driver.browser().navigateToURL("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
@@ -32,26 +32,26 @@ public class newtest {
         homepage.checkThatUserNavigatedToHomePage()
                 .clickOnSignUpLink()
                 .checkThatUserNavigatedToLogInSignUpPage()
-                .fillSignUpForm("qoqo@jfg.vv", "Mohamed Nagy")
+                .fillSignUpForm("hialll@jfg.vv", "Mohamed Nagy")
                 .checkThatRegisterationPageLoaded()
                 .fillInAccountInformation("male", "qoqo@jfg.vv", "19919690mN@", "15", "6", "2001")
                 .fillInAddressInformation("Mohamed", "Nagy", "DEPI", "Alexandria", "Smouha", "Singapore", "Waly", "Maly", "22346", "01553158667")
                 .checkThatAccountCreatedSuccessfully()
                 .clickContinueButton();
-        driver.get().manage().deleteAllCookies();
+        driver.browser().deleteAllCookie();
     }
 
     @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
     public void userCanLoginSuccessfully() {
-        driver.get().navigate().to("https://automationexercise.com/login");
-        login.fillLoginForm("qoqo@jfg.vv", "19919690mN@")
+        driver.browser().navigateToURL("https://automationexercise.com/login");
+        login.fillLoginForm("hialll@jfg.vv", "19919690mN@")
                 .checkThatUserLoggedInSuccessfully()
                 .checkThatLogoutLinkShouldBeDisplayed();
     }
 
     @Test(priority = 3, dependsOnMethods = "userCanLoginSuccessfully")
     public void userCanDeleteAccountSuccessfully() {
-        driver.get().navigate().to("https://automationexercise.com/");
+        driver.browser().navigateToURL("https://automationexercise.com/");
         homepage.checkThatUserNavigatedToHomePage()
                 .checkThatUserLoggedInSuccessfully()
                 .checkThatLogoutLinkShouldBeDisplayed()
@@ -62,7 +62,7 @@ public class newtest {
 
     @AfterClass
     public void tearDown() {
-        driver.get().manage().deleteAllCookies();
+        driver.browser().deleteAllCookie();
         driver.quit();
     }
 

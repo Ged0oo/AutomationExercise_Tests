@@ -35,7 +35,7 @@ public class LoginSignupPage {
      * Assertions
      */
     public LoginSignupPage checkThatUserNavigatedToLogInSignUpPage() {
-        Assert.assertTrue(driver.get().getCurrentUrl().contains("/login"));
+        Assert.assertTrue(driver.browser().getCurrentURL().contains("/login"));
         Assert.assertTrue(driver.element().isDisplayed(newUserSignUpLabel));
         Assert.assertTrue(driver.element().isDisplayed(logInYourAccountLabel));
         return this;
