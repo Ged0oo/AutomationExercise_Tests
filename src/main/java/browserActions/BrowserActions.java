@@ -10,9 +10,11 @@ import javax.swing.*;
 public class BrowserActions {
 
     private WebDriver driver;
+    private Actions actions;
 
     public BrowserActions(WebDriver driver) {
         this.driver = driver;
+        this.actions = new Actions(driver);
     }
 
     public BrowserActions navigateToURL(String url) {

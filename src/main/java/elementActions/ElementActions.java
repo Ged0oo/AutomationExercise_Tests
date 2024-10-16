@@ -8,9 +8,11 @@ import org.openqa.selenium.support.ui.Select;
 public class ElementActions {
 
     private WebDriver driver;
+    private Actions actions;
 
     public ElementActions(WebDriver driver) {
         this.driver = driver;
+        this.actions = new Actions(driver);
     }
 
     public ElementActions click(By locator) {
@@ -55,7 +57,13 @@ public class ElementActions {
     }
 
     public  ElementActions scrollToElement(By locator) {
+//        driver.
         new Actions(driver).scrollToElement(driver.findElement(locator)).build().perform();
+        return this;
+    }
+
+    public ElementActions hoverOnElement(By locator) {
+        new Actions(driver).moveToElement(driver.findElement(locator)).click().build().perform();
         return this;
     }
 }

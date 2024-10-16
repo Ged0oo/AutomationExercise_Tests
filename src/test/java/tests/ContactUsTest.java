@@ -1,9 +1,12 @@
 package tests;
 import driverFactory.Driver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
+import utilities.ScreenShotManager;
 
 public class ContactUsTest {
     Driver driver;
@@ -24,6 +27,15 @@ public class ContactUsTest {
                 .checkThatContactUsPageLoadedSuccessfully()
                 .fillContactUsForm("Mohamed Nagy", "dfdsf@df.cc", "Objection", "HelloWorld How Are Things >>!")
                 .userContactedUsSuccessfully().clickHome().checkThatUserNavigatedToHomePage();
+    }
+
+    @AfterMethod
+    public void checkFailure(ITestResult result) {
+         if(result.getStatus() == ITestResult.FAILURE) {
+             System.out.println("Test Failed.");
+             System.out.println("Taking Screenshot ...");
+             ScreenShotManager.captureScreenshot(driver.get(), "ContactUsTest");
+         }
     }
 
     @AfterClass
