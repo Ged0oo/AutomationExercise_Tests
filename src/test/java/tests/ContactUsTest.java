@@ -1,21 +1,21 @@
 package tests;
 import driverFactory.Driver;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
-import utilities.ScreenShotManager;
 
 public class ContactUsTest {
     Driver driver;
     Homepage homepage;
 
+    ThreadLocal<Driver> parallelDriver;
     @BeforeClass
-    public void setUp (){
+    @Parameters(value={"browser"})
+    public void setUp (String browser){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        driver = new Driver("CHROME");
+        driver = new Driver(browser);
         homepage = new Homepage(driver);
         driver.browser().navigateToURL("https://automationexercise.com/");
     }
