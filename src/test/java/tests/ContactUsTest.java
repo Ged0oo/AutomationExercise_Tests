@@ -29,14 +29,14 @@ public class ContactUsTest {
                 .userContactedUsSuccessfully().clickHome().checkThatUserNavigatedToHomePage();
     }
 
-    @AfterMethod
-    public void checkFailure(ITestResult result) {
-         if(result.getStatus() == ITestResult.FAILURE) {
-             System.out.println("Test Failed.");
-             System.out.println("Taking Screenshot ...");
-             ScreenShotManager.captureScreenshot(driver.get(), "ContactUsTest");
-         }
-    }
+//    @AfterMethod
+//    public void checkFailure(ITestResult result) {
+//         if(result.getStatus() == ITestResult.FAILURE) {
+//             System.out.println("Test Failed.");
+//             System.out.println("Taking Screenshot ...");
+//             ScreenShotManager.captureScreenshot(driver.get(), "ContactUsTest");
+//         }
+//    }
 
     @AfterClass
     public void tearDown() {

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Driver {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
     public Driver(String driverType) {
         driver = getDriver(driverType).startDriver();
@@ -27,7 +27,7 @@ public class Driver {
         }
     }
 
-    public WebDriver get() {
+    public static WebDriver get() {
         return driver;
     }
 
