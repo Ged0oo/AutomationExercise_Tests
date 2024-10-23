@@ -5,21 +5,22 @@ import elementActions.ElementActions;
 import listeners.webdriver.WebDriverListeners;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.events.WebDriverListener;
-
+import pages.Homepage;
 
 public class Driver {
 
-    private static WebDriver driver;
+    public Homepage homepage;
+    private ThreadLocal<WebDriver> driver;
 
     public Driver(String driverType) {
 
         WebDriver undecoratedDriver = getDriver(driverType).startDriver();
+        assert undecoratedDriver != null;
 
-        driver = new EventFiringDecorator<>(org.openqa.selenium.WebDriver.class,
-                new WebDriverListeners(undecoratedDriver)).decorate(undecoratedDriver);
+        driver = new ThreadLocal<>();
+        driver.set( new EventFiringDecorator<>(WebDriver.class,
+                new WebDriverListeners(undecoratedDriver)).decorate(undecoratedDriver));
 
-        assert driver != null;
     }
 
     private DriverAbstract getDriver(String driverType) {
@@ -36,16 +37,16 @@ public class Driver {
         }
     }
 
-    public static WebDriver get() {
-        return driver;
+    public WebDriver get() {
+        return driver.get();
     }
 
     public void quit() {
-        driver.quit();
+        driver.get().quit();
     }
 
     public ElementActions element() {
-        return new ElementActions(driver);
+        return new ElementActions(driver.get());
     }
-    public BrowserActions browser() {return new BrowserActions(driver);}
+    public BrowserActions browser() {return new BrowserActions(driver.get());}
 }

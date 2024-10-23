@@ -6,18 +6,21 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class ContactUsTest {
-    Driver driver;
-    Homepage homepage;
+import java.time.Duration;
 
-    ThreadLocal<Driver> parallelDriver;
+public class ContactUsTest {
+//    Driver driver;
+    Homepage homepage;
+    public ThreadLocal<Driver> driver;
     @BeforeClass
     @Parameters(value={"browser"})
     public void setUp (String browser){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        driver = new Driver(browser);
-        homepage = new Homepage(driver);
-        driver.browser().navigateToURL("https://automationexercise.com/");
+        driver = new ThreadLocal<>();
+        driver.set(new Driver(browser));
+        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+        homepage = new Homepage(driver.get());
+        driver.get().browser().navigateToURL("https://automationexercise.com/");
     }
 
     @Test(priority = 1)
@@ -29,19 +32,10 @@ public class ContactUsTest {
                 .userContactedUsSuccessfully().clickHome().checkThatUserNavigatedToHomePage();
     }
 
-//    @AfterMethod
-//    public void checkFailure(ITestResult result) {
-//         if(result.getStatus() == ITestResult.FAILURE) {
-//             System.out.println("Test Failed.");
-//             System.out.println("Taking Screenshot ...");
-//             ScreenShotManager.captureScreenshot(driver.get(), "ContactUsTest");
-//         }
-//    }
-
     @AfterClass
     public void tearDown() {
-        driver.browser().deleteAllCookie();
-        driver.quit();
+        driver.get().browser().deleteAllCookie();
+        driver.get().quit();
     }
 
 }

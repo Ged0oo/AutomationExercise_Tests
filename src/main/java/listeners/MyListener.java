@@ -32,7 +32,7 @@ public class MyListener implements ITestListener, IExecutionListener {
     public void onTestFailure(ITestResult result) {
         System.out.println("Test Failed.");
         System.out.println("Taking Screenshot ...");
-        ScreenShotManager.captureScreenshot(Driver.get(), "ContactUsTest");
+//        ScreenShotManager.captureScreenshot(Driver.get(), "ContactUsTest");
         System.out.println("*******  Failure of Test: " + result.getName() + " ***************");
     }
 
