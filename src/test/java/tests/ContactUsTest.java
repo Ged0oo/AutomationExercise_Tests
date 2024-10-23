@@ -1,9 +1,6 @@
 package tests;
 import driverFactory.Driver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.time.Duration;
@@ -14,13 +11,13 @@ public class ContactUsTest {
     public ThreadLocal<Driver> driver;
     @BeforeClass
     @Parameters(value={"browser"})
-    public void setUp (String browser){
+    public void setUp (@Optional("CHROME") String browser){
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ThreadLocal<>();
         driver.set(new Driver(browser));
-        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
-        homepage = new Homepage(driver.get());
+//        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get().browser().navigateToURL("https://automationexercise.com/");
+        homepage = new Homepage(driver.get());
     }
 
     @Test(priority = 1)

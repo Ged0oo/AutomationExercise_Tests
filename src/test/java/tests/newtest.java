@@ -26,7 +26,7 @@ public class newtest {
         homepage.checkThatUserNavigatedToHomePage()
                 .clickOnSignUpLink()
                 .checkThatUserNavigatedToLogInSignUpPage()
-                .fillSignUpForm("fdfee@jfg.vv", "Mohamed Nagy")
+                .fillSignUpForm("11ww@jfg.vv", "Mohamed Nagy")
                 .checkThatRegisterationPageLoaded()
                 .fillInAccountInformation("male", "qoqo@jfg.vv", "19919690mN@", "15", "6", "2001")
                 .fillInAddressInformation("Mohamed", "Nagy", "DEPI", "Alexandria", "Smouha", "Singapore", "Waly", "Maly", "22346", "01553158667")
@@ -38,7 +38,7 @@ public class newtest {
     @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
     public void userCanLoginSuccessfully() {
         driver.browser().navigateToURL("https://automationexercise.com/login");
-        login.fillLoginForm("fdfee@jfg.vv", "19919690mN@")
+        login.fillLoginForm("11ww@jfg.vv", "19919690mN@")
                 .checkThatUserLoggedInSuccessfully()
                 .checkThatLogoutLinkShouldBeDisplayed();
     }
